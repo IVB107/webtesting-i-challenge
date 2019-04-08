@@ -25,6 +25,10 @@ describe('enhancer.js', () => {
     let success = succeed(item);
 
     it('Should have an enhancement prop', () => {
+      expect(success.enhancement).toBeTruthy();
+    })
+
+    it('Should have a defined enhancement prop', () => {
       expect(success.enhancement).toBeDefined();
     })
 
@@ -67,6 +71,7 @@ describe('enhancer.js', () => {
     it('Should decrease enhancement by 1 if enhancement is >= 17', () => {
       if (item.enhancement >= 17) {
         expect(failed.enhancement).toBe(item.enhancement - 1);
+        expect(failed.durability).toBe(item.durability - 10);
       }
     })
 
