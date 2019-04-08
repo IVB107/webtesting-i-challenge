@@ -9,6 +9,7 @@ describe('enhancer.js', () => {
   }
   const string = "Yo, check it I'm a string!"
 
+  // REPAIR
   describe('repair', () => {
     let repaired = repair(item);
 
@@ -21,6 +22,7 @@ describe('enhancer.js', () => {
     })
   })
 
+  // SUCCEED
   describe('succeed', () => {
     let success = succeed(item);
 
@@ -41,10 +43,15 @@ describe('enhancer.js', () => {
     })
   })
 
+  // FAIL
   describe('fail', () => {
     let failed = fail(item);
-  
+
     it('Should have an enhancement prop', () => {
+      expect(failed.enhancement).toBeTruthy();
+    })
+  
+    it('Should have a defined enhancement prop', () => {
       expect(failed.enhancement).toBeDefined();
     })
 
@@ -75,6 +82,22 @@ describe('enhancer.js', () => {
       }
     })
 
+  })
+
+  describe('get', () => {
+    let received = get(item);
+
+    it('Should not modify the name prop if enhancement === 0', () => {
+      if(item.enhancement === 0) {
+        expect(received.name).toBe(item.name);
+      }
+    })
+
+    it('Should display name preceeded by [+ (enhancement level)]', () => {
+      if(item.enhancement !== 0) {
+        expect(received.name).toBe(`[+${received.enhancement}] ${item.name}`);
+      }
+    })
   })
 
 })
