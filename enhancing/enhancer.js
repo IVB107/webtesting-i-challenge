@@ -6,8 +6,14 @@ module.exports = {
 };
 
 function succeed(item) {
+  let enhanced = item.enhancement;
+  if (enhanced < 20){
+    enhanced += 1;
+  }
+
   return { 
-    ...item
+    ...item,
+    enhancement: enhanced
   };
 }
 
